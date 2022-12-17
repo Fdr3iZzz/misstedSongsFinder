@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19281a26-5b91-4458-84da-9c40948b7391" name="Changes" comment="Working:&#10;write to File&#10;create output folder&#10;&#10;ToDo:&#10;get folder name&#10;get file name&#10;connect everything up">
+    <list default="true" id="19281a26-5b91-4458-84da-9c40948b7391" name="Changes" comment="Working:&#10;get folder name&#10;create output folder&#10;create playlist files&#10;get song name&#10;write to File&#10;&#10;ToDo:&#10;connect everything up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Franz3/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Franz3/Main.java" afterDir="false" />
     </list>
@@ -28,6 +31,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b482aa33-2fb1-4ac2-8223-c2f0f3302c71" />
+        <option name="url" value="https://github.com/Franz321/misstedSongsFinder.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -37,11 +53,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Franz3/IdeaProjects/misstedSongsFinder&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/Franz3/IdeaProjects/misstedSongsFinder",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -58,7 +75,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669980896991</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Working:&#10;get folder name&#10;create output folder&#10;create playlist files&#10;get song name&#10;write to File&#10;&#10;ToDo:&#10;connect everything up">
+      <created>1670364507116</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670364507117</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -74,6 +98,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working:&#10;write to File&#10;create output folder&#10;&#10;ToDo:&#10;get folder name&#10;get file name&#10;connect everything up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working:&#10;write to File&#10;create output folder&#10;&#10;ToDo:&#10;get folder name&#10;get file name&#10;connect everything up" />
+    <MESSAGE value="Working:&#10;get folder name&#10;create output folder&#10;create playlist files&#10;get song name&#10;write to File&#10;&#10;ToDo:&#10;connect everything up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working:&#10;get folder name&#10;create output folder&#10;create playlist files&#10;get song name&#10;write to File&#10;&#10;ToDo:&#10;connect everything up" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

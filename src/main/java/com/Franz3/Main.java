@@ -1,96 +1,101 @@
 package com.Franz3;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.util.Collections;
 
 public class Main {
     public static String pathInput = "E:\\Music\\missedSongs\\Musik input";
     public static String pathOutput = "E:\\Music\\missedSongs\\Musik output";
-    public static String input = "01. xyz";
+    public static String splitter = "\\."; // character in song name after the number
+// might have to set the songPath when where we get the song names
 
     public static void main(String[] args) {
-
-        /*get playlist names
-        * create files for playlists
-        * get file name
-        * sort file names
-        * count up and find missing
-        * write to file*/
-
         // create folder for output
         new File(pathOutput).mkdirs();
-        // get playlist names for naming the txt and creating files
-        ArrayList<String> playlistNames = new ArrayList<>();
-        File playlistDir = new File(pathInput);
-        File[] playlists = playlistDir.listFiles();
-        String[] playlistNameArray = new String[0];
-        if (playlists != null) {
-            for (File file : playlists) {
-                if (file.isDirectory()) {
-                    playlistNames.add(file.getName());
-                    // create File for output
-                    try {
-                        File playlistTxt = new File(pathOutput + "\\" + file.getName() + ".txt");
-                        playlistTxt.createNewFile();
-                    } catch (IOException e){
-                        System.out.println("file creation error");
+        // get playlist names
+        File inputFile = new File(pathInput);
+        String[] playlistNames = inputFile.list();
+        // create txt files
+        for(String playlistName : playlistNames ){
+            File playlistFiles = new File(pathOutput + "\\" + playlistName + ".txt");
+            try{
+                playlistFiles.createNewFile();
+            }catch (IOException e){
+                System.out.println("Failed to create playlist .txt files");
+            }
+        }
+        for (String playlistName : playlistNames){
+            getSongTitle(playlistName);
+        }
+    }
+
+    //get file name
+    static void getSongTitle (String playlistName){
+        // get song names
+        File songsFile = new File(pathInput + "\\" + playlistName);
+        String[] songsFileList = songsFile.list();
+        ArrayList<String> songNames = new ArrayList<>();
+        if (songsFileList != null){
+            songNames = new ArrayList<String>(Arrays.asList(songsFileList));
+        }else System.out.println("Dir has no songs");
+        System.out.println(songNames);
+        // split Strings
+        ArrayList<String> songNamesFormatted = new ArrayList<String>();
+        for (String songName : songNames){
+            String[] substrings = songName.split(splitter,0);
+            songNamesFormatted.add(substrings[0]);
+        }
+        System.out.println(songNamesFormatted);
+        //convert String arraylist to int arraylist
+        ArrayList<Integer> songNumbers = new ArrayList<>();
+        try{
+            for (String formattedSong : songNamesFormatted){
+                songNumbers.add(Integer.parseInt(formattedSong));
+            }
+        }catch (NumberFormatException e) {
+            System.out.println("songNamesFormatted consisted not only out of Integers");
+        }
+        System.out.println(songNumbers);
+        // sort Integers
+        Collections.sort(songNumbers);
+        System.out.println(songNumbers);
+        // find missing
+        ArrayList<Integer> missingNumbers = new ArrayList<>();
+            for (int i = 1; i<=songNumbers.get(songNumbers.size()-1); i++){
+                boolean isPresent = false;
+                for (Integer songNumber : songNumbers) {
+                    if (songNumber == i) {
+                        isPresent = true;
+                        break;
                     }
                 }
+                if (!isPresent) {
+                    missingNumbers.add(i);
+                }
             }
-            playlistNameArray = playlistNames.toArray(new String[0]);
-        }else {
-            System.out.println("there are no playlists");
-        }
-
-
-        // get file names for naming the txt
-        File songDir = new File(pathInput + "\\" + playlistNameArray[0] + "\\download\\Temp\\" + playlistNameArray[0]);
-        System.out.println(songDir.getPath());
-        File[] songFiles = songDir.listFiles();
-        //split Strings and sort them
-        if (songFiles != null){
-            Arrays.sort(songFiles, (a, b) -> {
-                int aInt = Integer.parseInt(a.getName().split("\\.")[0]);
-                int bInt = Integer.parseInt(b.getName().split("\\.")[0]);
-
-                // Compare the numeric parts of the file names
-                return Integer.compare(aInt, bInt);
-            });
-        }
-        System.out.println(playlists.length);
-        for (int i =0; i < playlists.length; i++){
-            System.out.println(i);
+        System.out.println(missingNumbers);
+        // write to file
+        writeFile(playlistName, "Checked until " + songNumbers.get(songNumbers.size()-1) + "\n");
+        for (int number : missingNumbers){
+            writeFile(playlistName, number + "\n");
         }
     }
 
 
-     static void createFile(String fileName){
-         // create folder for output
-         new File(pathOutput).mkdirs();
-         // create File for output
-         try {
-             File file = new File(pathOutput + "\\" + fileName + ".txt");
-             file.createNewFile();
-         } catch (IOException e){
-             System.out.println("file creation error");
-         }
-
-    }
     // write to file
-    static void writeFile (String fileName, String fileInput){
+    static void writeFile(String fileName, String fileInput) {
         try {
-            FileWriter writer = new FileWriter(pathOutput + "\\" + fileName + ".txt");
-            writer.write(fileInput);
-            writer.close();
+            FileWriter fileWriter = new FileWriter(pathOutput + "\\" + fileName + ".txt", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(fileInput);
+            bufferedWriter.close();
         } catch (IOException e) {
             System.out.println("file writing error");
         }
     }
-
-
-
 }
